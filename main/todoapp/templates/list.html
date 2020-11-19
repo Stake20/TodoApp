@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<style>
+body{
+    background-image: url("https://thumbs.dreamstime.com/b/top-view-worktable-accessories-business-flat-lay-background-copy-space-180807541.jpg");
+   }
+
+input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+}
+
+input::placeholder{
+  color: #6BA3E8;
+}
+.submit {
+  background-color: #6BA3E8;
+  width: 50%;
+}
+
+.center-column{
+  width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+}
+.item-row{
+  background-color: #906abd;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 3px;
+  color: #fff;
+  fon-size: 16px;
+  box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+}
+
+
+.myButton {
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.myButton:hover {
+	background-color:#eb675e;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+.myButton1 {
+	box-shadow:inset 0px 39px 0px -24px #276873;
+	background-color:#599bb3;
+	border-radius:4px;
+	border:1px solid #29668f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+}
+.myButton1:hover {
+	background-color:#408c99;
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+</style>
+<div class="center-column">
+    <h1>THE TODO APP</h1>
+<form method="POST" action="/">
+    {% csrf_token %}
+    {{form.title}}
+    <input class="myButton1" type="submit" name="Create Task">
+
+</form>
+{% for x in todo  %}
+    <div class="item-row">
+        <a href="{% url 'update_list' x.id %}"><button class="myButton1">Update</button></a>
+        <a href="{% url 'delete' x.id %}"><button class="myButton">Delete</button></a>
+        {% if x.complete == True %}
+        <strike>{{x}}</strike>
+        {% else %}
+        <span>{{x}}</span>
+        {% endif %}
+    </div>
+{% endfor %}
+    </div>
+</body>
+</html>
